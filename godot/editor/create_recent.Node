@@ -1,0 +1,14 @@
+AnimatedSprite2D
+AnimationPlayer
+Sprite2D
+VBoxContainer
+CenterContainer
+Node2D
+AudioStreamPlayer
+ParallaxLayer
+ParallaxBackground
+ColorRect
+Timer
+Button
+RichTextLabel
+Area2D
