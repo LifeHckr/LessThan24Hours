@@ -1,0 +1,190 @@
+[gd_scene load_steps=20 format=3 uid="uid://b6ow36jnp68jb"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_gc6c1"]
+[ext_resource type="FontFile" uid="uid://c57ufbmm72ng5" path="res://assets/origa___.ttf" id="2_ywxcg"]
+[ext_resource type="Texture2D" uid="uid://bujrioabxkdvq" path="res://assets/bg2.png" id="3_dxk8f"]
+[ext_resource type="Texture2D" uid="uid://b47bkhm2rgmq0" path="res://assets/bg1.png" id="4_acs20"]
+[ext_resource type="Texture2D" uid="uid://bu01dtmqhjeai" path="res://assets/crowWalk0.png" id="5_a74d1"]
+[ext_resource type="Texture2D" uid="uid://bqjgup5v1rxst" path="res://assets/crowWalk1.png" id="6_3tsms"]
+[ext_resource type="Texture2D" uid="uid://blg1wewiu8s7w" path="res://assets/crowWalk2.png" id="7_ufg2u"]
+[ext_resource type="Texture2D" uid="uid://dy70lk7v8rtwu" path="res://assets/crowIdleAir.png" id="8_u7la0"]
+[ext_resource type="Texture2D" uid="uid://cfna4byikjfjf" path="res://assets/crowIdleJump.png" id="9_h1yy0"]
+[ext_resource type="Texture2D" uid="uid://dlq3ntmd0hlmk" path="res://assets/crowIdleFlap.png" id="10_ryw6e"]
+[ext_resource type="Texture2D" uid="uid://dcf0xt5hyl3x1" path="res://assets/crowBalance.png" id="11_cdbeh"]
+[ext_resource type="Texture2D" uid="uid://5h8phrv3um4s" path="res://assets/crowDown2.png" id="12_ukcm1"]
+[ext_resource type="Texture2D" uid="uid://5jldehn3gbm4" path="res://assets/crowDown.png" id="13_p7s10"]
+[ext_resource type="Texture2D" uid="uid://daugguu4tsxar" path="res://assets/crowUp2.png" id="14_cwujv"]
+[ext_resource type="Texture2D" uid="uid://dyw5yutkn12t2" path="res://assets/crowUp.png" id="15_r8j42"]
+
+[sub_resource type="Theme" id="Theme_gjxwf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fvj0x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_a74d1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3tsms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_a74d1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ufg2u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4mcar"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_u7la0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_h1yy0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_u7la0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ryw6e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mf15v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_cdbeh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ukcm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_p7s10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ukcm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_cdbeh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_cwujv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_r8j42")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_cwujv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="main menu" type="Node2D"]
+script = ExtResource("1_gc6c1")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 248.0
+offset_top = 144.0
+offset_right = 324.0
+offset_bottom = 175.0
+theme = SubResource("Theme_gjxwf")
+theme_override_fonts/font = ExtResource("2_ywxcg")
+theme_override_font_sizes/font_size = 16
+text = "Start"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 200.0
+offset_top = 184.0
+offset_right = 374.0
+offset_bottom = 215.0
+theme_override_fonts/font = ExtResource("2_ywxcg")
+text = "Let Time Go By"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = 192.0
+offset_top = 48.0
+offset_right = 386.0
+offset_bottom = 136.0
+theme_override_colors/font_selected_color = Color(0.0823529, 0.0196078, 0.160784, 1)
+theme_override_colors/font_outline_color = Color(0.0823529, 0.0196078, 0.160784, 1)
+theme_override_constants/table_h_separation = 0
+theme_override_constants/outline_size = 17
+theme_override_fonts/normal_font = ExtResource("2_ywxcg")
+theme_override_font_sizes/normal_font_size = 27
+text = "       Or
+
+>1 Minute"
+fit_content = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = 192.0
+offset_top = 8.0
+offset_right = 386.0
+offset_bottom = 36.0
+theme_override_colors/font_selected_color = Color(0.0823529, 0.0196078, 0.160784, 1)
+theme_override_colors/font_outline_color = Color(0.0823529, 0.0196078, 0.160784, 1)
+theme_override_constants/table_h_separation = 0
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("2_ywxcg")
+theme_override_font_sizes/normal_font_size = 27
+text = "<24 Hours"
+fit_content = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_offset = Vector2(1, 1)
+scroll_base_scale = Vector2(0.5, 0.5)
+scroll_limit_begin = Vector2(-26200, 20150)
+scroll_limit_end = Vector2(26500, 500)
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = 4
+position = Vector2(256, 104)
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1280, 1280)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2(5, 5)
+texture = ExtResource("3_dxk8f")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -2
+motion_scale = Vector2(0.2, 0.5)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(256, 176)
+scale = Vector2(5, 2.5)
+texture = ExtResource("4_acs20")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(224, 280)
+sprite_frames = SubResource("SpriteFrames_fvj0x")
+autoplay = "default"
+frame_progress = 0.879669
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(288, 280)
+sprite_frames = SubResource("SpriteFrames_4mcar")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(352, 280)
+sprite_frames = SubResource("SpriteFrames_mf15v")
+autoplay = "default"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

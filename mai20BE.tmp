@@ -1,0 +1,119 @@
+[gd_scene load_steps=18 format=3 uid="uid://dbn4nvkawnkci"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_6v164"]
+[ext_resource type="Texture2D" uid="uid://bu01dtmqhjeai" path="res://assets/crowWalk0.png" id="1_oru8x"]
+[ext_resource type="Texture2D" uid="uid://dcf0xt5hyl3x1" path="res://assets/crowBalance.png" id="1_pj124"]
+[ext_resource type="Texture2D" uid="uid://5h8phrv3um4s" path="res://assets/crowDown2.png" id="2_0cgk5"]
+[ext_resource type="Texture2D" uid="uid://bqjgup5v1rxst" path="res://assets/crowWalk1.png" id="2_43hw6"]
+[ext_resource type="Texture2D" uid="uid://blg1wewiu8s7w" path="res://assets/crowWalk2.png" id="3_qjcv3"]
+[ext_resource type="Texture2D" uid="uid://5jldehn3gbm4" path="res://assets/crowDown.png" id="3_rssiv"]
+[ext_resource type="Texture2D" uid="uid://daugguu4tsxar" path="res://assets/crowUp2.png" id="4_3sqx3"]
+[ext_resource type="Texture2D" uid="uid://dyw5yutkn12t2" path="res://assets/crowUp.png" id="5_ptkx0"]
+[ext_resource type="Texture2D" uid="uid://dy70lk7v8rtwu" path="res://assets/crowIdleAir.png" id="6_2bka5"]
+[ext_resource type="Texture2D" uid="uid://cfna4byikjfjf" path="res://assets/crowIdleJump.png" id="7_ui8y1"]
+[ext_resource type="Texture2D" uid="uid://dlq3ntmd0hlmk" path="res://assets/crowIdleFlap.png" id="8_n7r1t"]
+[ext_resource type="Texture2D" uid="uid://ce2fggdn6ae2w" path="res://icon.svg" id="13_65jp6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lxsw"]
+size = Vector2(30, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ds35c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pj124")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0cgk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rssiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0cgk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_pj124")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3sqx3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ptkx0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3sqx3")
+}],
+"loop": true,
+"name": &"fast",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2bka5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ui8y1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2bka5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_n7r1t")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oru8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_43hw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_oru8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qjcv3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y5two"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fj5ss"]
+
+[node name="Root" type="Node2D"]
+
+[node name="player" type="CharacterBody2D" parent="."]
+position = Vector2(97, -76)
+script = ExtResource("1_6v164")
+
+[node name="body" type="CollisionShape2D" parent="player"]
+position = Vector2(1, 2.5)
+shape = SubResource("RectangleShape2D_7lxsw")
+
+[node name="camera" type="Camera2D" parent="player"]
+
+[node name="sprite" type="AnimatedSprite2D" parent="player"]
+sprite_frames = SubResource("SpriteFrames_ds35c")
+animation = &"walk"
+
+[node name="anims" type="AnimationPlayer" parent="player/sprite"]
+
+[node name="Placeholder" type="Sprite2D" parent="."]
+position = Vector2(28.5, 89)
+scale = Vector2(3.44531, 1)
+texture = ExtResource("13_65jp6")
+
+[node name="ground" type="StaticBody2D" parent="."]
+position = Vector2(29, -26)
+scale = Vector2(53.8853, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ground"]
+shape = SubResource("RectangleShape2D_fj5ss")

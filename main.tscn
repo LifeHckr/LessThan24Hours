@@ -1,0 +1,1495 @@
+[gd_scene load_steps=57 format=3 uid="uid://dbn4nvkawnkci"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_6v164"]
+[ext_resource type="Script" path="res://main.gd" id="1_bvb1k"]
+[ext_resource type="Texture2D" uid="uid://bu01dtmqhjeai" path="res://assets/crowWalk0.png" id="1_oru8x"]
+[ext_resource type="Texture2D" uid="uid://dcf0xt5hyl3x1" path="res://assets/crowBalance.png" id="1_pj124"]
+[ext_resource type="Texture2D" uid="uid://5h8phrv3um4s" path="res://assets/crowDown2.png" id="2_0cgk5"]
+[ext_resource type="Texture2D" uid="uid://bqjgup5v1rxst" path="res://assets/crowWalk1.png" id="2_43hw6"]
+[ext_resource type="Texture2D" uid="uid://blg1wewiu8s7w" path="res://assets/crowWalk2.png" id="3_qjcv3"]
+[ext_resource type="Texture2D" uid="uid://5jldehn3gbm4" path="res://assets/crowDown.png" id="3_rssiv"]
+[ext_resource type="Texture2D" uid="uid://daugguu4tsxar" path="res://assets/crowUp2.png" id="4_3sqx3"]
+[ext_resource type="Texture2D" uid="uid://dyw5yutkn12t2" path="res://assets/crowUp.png" id="5_ptkx0"]
+[ext_resource type="Texture2D" uid="uid://dy70lk7v8rtwu" path="res://assets/crowIdleAir.png" id="6_2bka5"]
+[ext_resource type="Texture2D" uid="uid://cfna4byikjfjf" path="res://assets/crowIdleJump.png" id="7_ui8y1"]
+[ext_resource type="Texture2D" uid="uid://dlq3ntmd0hlmk" path="res://assets/crowIdleFlap.png" id="8_n7r1t"]
+[ext_resource type="Texture2D" uid="uid://ce2fggdn6ae2w" path="res://icon.svg" id="13_65jp6"]
+[ext_resource type="FontFile" uid="uid://c57ufbmm72ng5" path="res://assets/origa___.ttf" id="15_g7hky"]
+[ext_resource type="Texture2D" uid="uid://cd7k56560tn2v" path="res://assets/nest1.png" id="16_jk3yc"]
+[ext_resource type="Script" path="res://Interact.gd" id="16_y1uib"]
+[ext_resource type="Script" path="res://NormInteract.gd" id="17_4snua"]
+[ext_resource type="Texture2D" uid="uid://b47bkhm2rgmq0" path="res://assets/bg1.png" id="18_hi0uc"]
+[ext_resource type="Texture2D" uid="uid://bujrioabxkdvq" path="res://assets/bg2.png" id="18_hj65j"]
+[ext_resource type="Texture2D" uid="uid://cas1itsxp4h3l" path="res://assets/flowerAnim.png" id="19_8o6gs"]
+[ext_resource type="Texture2D" uid="uid://dldlll61a7xyw" path="res://assets/shiny.png" id="19_d26yx"]
+[ext_resource type="Texture2D" uid="uid://cdralgsictt3l" path="res://assets/worms.png" id="20_itn8w"]
+[ext_resource type="Texture2D" uid="uid://yblbbqndldge" path="res://assets/tree1.png" id="20_vqdye"]
+[ext_resource type="Texture2D" uid="uid://4vf5gjk63ow" path="res://assets/grass1.png" id="21_mm06o"]
+[ext_resource type="AudioStream" uid="uid://dqn8mu054ervv" path="res://assets/561394__migfus20__fantasy-background-music-loop (mp3cut.net).mp3" id="22_p5aso"]
+[ext_resource type="Texture2D" uid="uid://c3n487fhwvgpi" path="res://assets/treeHome.png" id="24_n5dcd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lxsw"]
+size = Vector2(30, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ds35c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pj124")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0cgk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rssiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0cgk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_pj124")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3sqx3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ptkx0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3sqx3")
+}],
+"loop": true,
+"name": &"fast",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2bka5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ui8y1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2bka5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_n7r1t")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oru8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_43hw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_oru8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qjcv3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y5two"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fj5ss"]
+size = Vector2(23, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3ttt"]
+size = Vector2(32.4434, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bf74r"]
+size = Vector2(31.7228, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ubgt"]
+size = Vector2(130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21n6h"]
+atlas = ExtResource("19_8o6gs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snlnl"]
+atlas = ExtResource("19_8o6gs")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow5h2"]
+atlas = ExtResource("19_8o6gs")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vqgl"]
+atlas = ExtResource("19_8o6gs")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kakv8"]
+atlas = ExtResource("19_8o6gs")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okuns"]
+atlas = ExtResource("19_8o6gs")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew7qo"]
+atlas = ExtResource("19_8o6gs")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74m4u"]
+atlas = ExtResource("19_8o6gs")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a13ti"]
+animations = [{
+"frames": [{
+"duration": 120.0,
+"texture": SubResource("AtlasTexture_21n6h")
+}, {
+"duration": 60.0,
+"texture": SubResource("AtlasTexture_snlnl")
+}, {
+"duration": 60.0,
+"texture": SubResource("AtlasTexture_ow5h2")
+}, {
+"duration": 60.0,
+"texture": SubResource("AtlasTexture_6vqgl")
+}, {
+"duration": 60.0,
+"texture": SubResource("AtlasTexture_kakv8")
+}, {
+"duration": 60.0,
+"texture": SubResource("AtlasTexture_okuns")
+}, {
+"duration": 60.0,
+"texture": SubResource("AtlasTexture_ew7qo")
+}, {
+"duration": 60.0,
+"texture": SubResource("AtlasTexture_74m4u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dst5l"]
+size = Vector2(20, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vplnl"]
+atlas = ExtResource("20_itn8w")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spfvf"]
+atlas = ExtResource("20_itn8w")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gc8h0"]
+atlas = ExtResource("20_itn8w")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g21dj"]
+atlas = ExtResource("20_itn8w")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_07lg4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vplnl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spfvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gc8h0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g21dj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qik4k"]
+size = Vector2(20, 19903)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yar4m"]
+size = Vector2(14.5, 18380)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir3pb"]
+size = Vector2(151.392, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mrbh"]
+
+[sub_resource type="Animation" id="Animation_isohe"]
+resource_name = "new_animation"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iumbs"]
+_data = {
+"new_animation": SubResource("Animation_isohe")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5hol"]
+size = Vector2(39.3335, 4.66626)
+
+[node name="Root" type="Node2D"]
+script = ExtResource("1_bvb1k")
+
+[node name="player" type="CharacterBody2D" parent="."]
+position = Vector2(-17297, -47)
+safe_margin = 0.1
+script = ExtResource("1_6v164")
+
+[node name="body" type="CollisionShape2D" parent="player"]
+position = Vector2(1, 2.5)
+shape = SubResource("RectangleShape2D_7lxsw")
+
+[node name="camera" type="Camera2D" parent="player"]
+limit_bottom = 17
+
+[node name="sprite" type="AnimatedSprite2D" parent="player"]
+sprite_frames = SubResource("SpriteFrames_ds35c")
+animation = &"fly"
+frame_progress = 0.223523
+
+[node name="anims" type="AnimationPlayer" parent="player/sprite"]
+
+[node name="Placeholder" type="Sprite2D" parent="."]
+position = Vector2(28.5, 89)
+scale = Vector2(3.44531, 1)
+texture = ExtResource("13_65jp6")
+
+[node name="botWall" type="StaticBody2D" parent="."]
+position = Vector2(28, -2)
+scale = Vector2(2608, 3)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="botWall"]
+shape = SubResource("RectangleShape2D_fj5ss")
+
+[node name="topWall" type="StaticBody2D" parent="."]
+position = Vector2(603, -19998)
+scale = Vector2(2300, 3)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="topWall"]
+shape = SubResource("RectangleShape2D_fj5ss")
+
+[node name="leftWall" type="StaticBody2D" parent="."]
+position = Vector2(-26075, -10489)
+rotation = 1.5708
+scale = Vector2(1045, 2)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="leftWall"]
+shape = SubResource("RectangleShape2D_fj5ss")
+
+[node name="rightWall" type="StaticBody2D" parent="."]
+position = Vector2(26138, -10439)
+rotation = 1.5708
+scale = Vector2(1045, 2)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="rightWall"]
+shape = SubResource("RectangleShape2D_fj5ss")
+
+[node name="ground3" type="StaticBody2D" parent="."]
+position = Vector2(-17508, 169)
+scale = Vector2(8, 5.32)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ground3"]
+shape = SubResource("RectangleShape2D_fj5ss")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="ScreenTint" type="ColorRect" parent="UILayer" groups=["shader"]]
+z_index = 100
+offset_right = 576.0
+offset_bottom = 324.0
+color = Color(1, 0.796078, 0.380392, 0.117647)
+metadata/morning = Color(0.894118, 0.662745, 0, 0.117647)
+metadata/Night = Color(0.0588235, 0.101961, 0.176471, 0.768627)
+metadata/Noon = Color(1, 1, 1, 0)
+
+[node name="TimerLabel" type="RichTextLabel" parent="UILayer"]
+unique_name_in_owner = true
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 230.0
+offset_bottom = 34.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_constants/text_highlight_h_padding = 0
+theme_override_fonts/normal_font = ExtResource("15_g7hky")
+theme_override_font_sizes/normal_font_size = 20
+text = "23:59:59"
+
+[node name="TextBG" type="ColorRect" parent="UILayer" groups=["dialogue"]]
+offset_left = 150.0
+offset_top = 10.0
+offset_right = 564.0
+offset_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="TextOutline" type="ColorRect" parent="UILayer/TextBG"]
+z_index = -1
+layout_mode = 0
+offset_left = -12.0
+offset_top = -2.0
+offset_right = 402.0
+offset_bottom = 78.0
+scale = Vector2(1.05, 1.05)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Dialogue" type="RichTextLabel" parent="UILayer/TextBG"]
+z_index = 5
+layout_mode = 0
+offset_left = 5.0
+offset_right = 409.0
+offset_bottom = 80.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("15_g7hky")
+theme_override_font_sizes/normal_font_size = 20
+text = "You have less than 24 hours to return to your nest. 
+Controls: WASD Space Shift"
+
+[node name="fadeTimer" type="Timer" parent="UILayer/TextBG"]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="Time" type="Timer" parent="."]
+autostart = true
+
+[node name="Win" type="Sprite2D" parent="." groups=["interact"]]
+z_index = 1
+position = Vector2(24633, -640)
+scale = Vector2(1.387, 1)
+texture = ExtResource("16_jk3yc")
+script = ExtResource("16_y1uib")
+metadata/words = "One way or another, you found your nest."
+metadata/oneShot = false
+
+[node name="physics" type="Area2D" parent="Win"]
+position = Vector2(-0.00140817, 0)
+
+[node name="body" type="CollisionShape2D" parent="Win/physics"]
+position = Vector2(-0.361328, 1)
+shape = SubResource("RectangleShape2D_i3ttt")
+
+[node name="winTimer" type="Timer" parent="Win"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Interact2" type="Sprite2D" parent="." groups=["interact"]]
+z_index = 1
+position = Vector2(-16959, -249)
+scale = Vector2(1.473, 1)
+texture = ExtResource("16_jk3yc")
+script = ExtResource("17_4snua")
+metadata/words = "This is not your nest."
+metadata/oneShot = false
+
+[node name="physics" type="Area2D" parent="Interact2"]
+
+[node name="body" type="CollisionShape2D" parent="Interact2/physics"]
+position = Vector2(-0.00012207, 0)
+shape = SubResource("RectangleShape2D_bf74r")
+
+[node name="Interact3" type="Sprite2D" parent="." groups=["interact"]]
+z_index = 1
+position = Vector2(-21033, -247)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_65jp6")
+script = ExtResource("17_4snua")
+metadata/words = "What a strange doodad."
+metadata/oneShot = false
+
+[node name="physics" type="Area2D" parent="Interact3"]
+
+[node name="body" type="CollisionShape2D" parent="Interact3/physics"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_1ubgt")
+
+[node name="Interact4" type="AnimatedSprite2D" parent="." groups=["interact"]]
+z_index = 1
+position = Vector2(-14375, -20)
+sprite_frames = SubResource("SpriteFrames_a13ti")
+autoplay = "default"
+script = ExtResource("17_4snua")
+metadata/words = "The cycle of life and death. Every stage is beautiful."
+metadata/oneShot = false
+
+[node name="physics" type="Area2D" parent="Interact4"]
+
+[node name="body" type="CollisionShape2D" parent="Interact4/physics"]
+position = Vector2(0, 2)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_dst5l")
+
+[node name="Interact5" type="AnimatedSprite2D" parent="." groups=["interact"]]
+z_index = 1
+position = Vector2(8372, -17)
+sprite_frames = SubResource("SpriteFrames_07lg4")
+autoplay = "default"
+frame_progress = 0.248846
+script = ExtResource("17_4snua")
+metadata/words = "The worms are dancing around blithely. You would eat them, but you aren't hungry."
+metadata/oneShot = false
+
+[node name="physics" type="Area2D" parent="Interact5"]
+
+[node name="body" type="CollisionShape2D" parent="Interact5/physics"]
+position = Vector2(0, 2)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_dst5l")
+
+[node name="leftBoundInter" type="Sprite2D" parent="." groups=["interact"]]
+z_index = 1
+position = Vector2(-26049, -19)
+scale = Vector2(1.473, 1)
+script = ExtResource("17_4snua")
+metadata/words = "Sometimes there isn't more to see."
+metadata/oneShot = false
+
+[node name="physics" type="Area2D" parent="leftBoundInter"]
+
+[node name="body" type="CollisionShape2D" parent="leftBoundInter/physics"]
+position = Vector2(-5.42969, -9938.5)
+shape = SubResource("RectangleShape2D_qik4k")
+
+[node name="timeSpent" type="Sprite2D" parent="." groups=["interact"]]
+z_index = 1
+position = Vector2(6264, -25)
+scale = Vector2(1.473, 1)
+script = ExtResource("17_4snua")
+metadata/words = "It's up to you to choose how to spend your time. How is a crow supposed to spend theirs?"
+metadata/oneShot = true
+
+[node name="physics" type="Area2D" parent="timeSpent"]
+
+[node name="body" type="CollisionShape2D" parent="timeSpent/physics"]
+position = Vector2(-5.42969, -9938.5)
+shape = SubResource("RectangleShape2D_qik4k")
+
+[node name="treeSee" type="Sprite2D" parent="." groups=["interact"]]
+z_index = 1
+position = Vector2(24780, 68)
+scale = Vector2(4, 0.05)
+script = ExtResource("17_4snua")
+metadata/words = "What a tree. No wonder you made this your home."
+metadata/oneShot = false
+
+[node name="physics" type="Area2D" parent="treeSee"]
+
+[node name="body" type="CollisionShape2D" parent="treeSee/physics"]
+position = Vector2(-6, -10410)
+shape = SubResource("RectangleShape2D_yar4m")
+
+[node name="rightbound" type="Sprite2D" parent="." groups=["interact"]]
+z_index = 1
+position = Vector2(26128, -19)
+scale = Vector2(1.473, 1)
+script = ExtResource("17_4snua")
+metadata/words = "Sometimes there isn't more to see."
+metadata/oneShot = false
+
+[node name="physics" type="Area2D" parent="rightbound"]
+
+[node name="body" type="CollisionShape2D" parent="rightbound/physics"]
+position = Vector2(-5.42969, -9938.5)
+shape = SubResource("RectangleShape2D_qik4k")
+
+[node name="escape" type="Sprite2D" parent="." groups=["interact"]]
+z_index = 1
+position = Vector2(-25958, -142)
+scale = Vector2(1.473, 1)
+script = ExtResource("17_4snua")
+metadata/words = "I don't always know where I'm going."
+metadata/oneShot = false
+
+[node name="physics" type="Area2D" parent="escape"]
+
+[node name="body" type="CollisionShape2D" parent="escape/physics"]
+position = Vector2(-1.01563, -19885)
+shape = SubResource("RectangleShape2D_ir3pb")
+
+[node name="escape2" type="Sprite2D" parent="." groups=["interact"]]
+z_index = 1
+position = Vector2(-25805, -20166)
+rotation = 1.48865
+scale = Vector2(1.47385, 1.47385)
+texture = ExtResource("19_d26yx")
+script = ExtResource("17_4snua")
+metadata/words = "But I trust I can make the most out of where I end up."
+metadata/oneShot = false
+
+[node name="physics" type="Area2D" parent="escape2"]
+
+[node name="body" type="CollisionShape2D" parent="escape2/physics"]
+shape = SubResource("RectangleShape2D_5mrbh")
+
+[node name="anims" type="AnimationPlayer" parent="escape2"]
+libraries = {
+"": SubResource("AnimationLibrary_iumbs")
+}
+autoplay = "new_animation"
+
+[node name="escape3" type="Sprite2D" parent="." groups=["interact"]]
+z_index = 1
+position = Vector2(-25341, -20048)
+rotation = 1.48865
+scale = Vector2(1.47385, 1.47385)
+texture = ExtResource("19_d26yx")
+script = ExtResource("17_4snua")
+metadata/words = "I'll let you know, there is nothing further. Nothing in this game is missable."
+metadata/oneShot = false
+
+[node name="physics" type="Area2D" parent="escape3"]
+
+[node name="body" type="CollisionShape2D" parent="escape3/physics"]
+shape = SubResource("RectangleShape2D_5mrbh")
+
+[node name="anims" type="AnimationPlayer" parent="escape3"]
+libraries = {
+"": SubResource("AnimationLibrary_iumbs")
+}
+autoplay = "new_animation"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_offset = Vector2(1, 1)
+scroll_base_scale = Vector2(0.5, 0.5)
+scroll_limit_begin = Vector2(-26200, 20150)
+scroll_limit_end = Vector2(26500, 500)
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = 4
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1280, 1280)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2(10, 10)
+texture = ExtResource("18_hj65j")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -2
+motion_scale = Vector2(0.2, 0.5)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(0, 3)
+scale = Vector2(10, 5)
+texture = ExtResource("18_hi0uc")
+
+[node name="void" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -29753.0
+offset_top = -51348.0
+offset_right = -29713.0
+offset_bottom = -51308.0
+scale = Vector2(1435.12, 779.961)
+color = Color(0.32549, 0.32549, 0.32549, 1)
+
+[node name="ground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ground"]
+position = Vector2(128, 2)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ground/ParallaxLayer"]
+position = Vector2(217, 1)
+texture = ExtResource("21_mm06o")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_p5aso")
+autoplay = true
+
+[node name="homeTree" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(24762, -387)
+scale = Vector2(3, 3)
+texture = ExtResource("24_n5dcd")
+
+[node name="branch" type="StaticBody2D" parent="homeTree"]
+position = Vector2(-30.6667, -84)
+rotation = -0.698132
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="homeTree/branch"]
+position = Vector2(-9.35254, 1.29199)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_k5hol")
+one_way_collision = true
+
+[node name="ZTrees" type="Node2D" parent="."]
+position = Vector2(-23271, -387)
+scale = Vector2(3, 3)
+
+[node name="tree" type="Sprite2D" parent="ZTrees"]
+position = Vector2(2123.33, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree2" type="Sprite2D" parent="ZTrees"]
+position = Vector2(2456.67, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree2"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree2/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree2"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree2/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree2"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree2/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree2"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree2/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree2"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree2/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree3" type="Sprite2D" parent="ZTrees"]
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree3"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree3/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree3"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree3/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree3"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree3/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree3"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree3/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree3"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree3/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree4" type="Sprite2D" parent="ZTrees"]
+position = Vector2(765, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree4"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree4/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree4"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree4/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree4"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree4/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree4"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree4/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree4"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree4/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree5" type="Sprite2D" parent="ZTrees"]
+position = Vector2(1178.33, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree5"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree5/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree5"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree5/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree5"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree5/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree5"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree5/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree5"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree5/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree6" type="Sprite2D" parent="ZTrees"]
+position = Vector2(3520.67, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree6"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree6/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree6"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree6/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree6"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree6/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree6"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree6/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree6"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree6/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree7" type="Sprite2D" parent="ZTrees"]
+position = Vector2(4837.67, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree7"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree7/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree7"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree7/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree7"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree7/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree7"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree7/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree7"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree7/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree8" type="Sprite2D" parent="ZTrees"]
+position = Vector2(9313, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree8"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree8/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree8"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree8/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree8"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree8/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree8"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree8/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree8"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree8/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree9" type="Sprite2D" parent="ZTrees"]
+position = Vector2(12202.3, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree9"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree9/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree9"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree9/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree9"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree9/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree9"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree9/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree9"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree9/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree10" type="Sprite2D" parent="ZTrees"]
+position = Vector2(14406.3, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree10"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree10/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree10"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree10/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree10"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree10/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree10"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree10/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree10"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree10/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree11" type="Sprite2D" parent="ZTrees"]
+position = Vector2(15038, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree11"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree11/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree11"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree11/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree11"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree11/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree11"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree11/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree11"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree11/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree12" type="Sprite2D" parent="ZTrees"]
+position = Vector2(13438.7, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree12"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree12/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree12"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree12/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree12"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree12/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree12"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree12/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree12"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree12/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree13" type="Sprite2D" parent="ZTrees"]
+position = Vector2(12955, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree13"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree13/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree13"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree13/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree13"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree13/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree13"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree13/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree13"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree13/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree14" type="Sprite2D" parent="ZTrees"]
+position = Vector2(11261.7, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree14"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree14/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree14"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree14/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree14"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree14/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree14"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree14/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree14"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree14/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree15" type="Sprite2D" parent="ZTrees"]
+position = Vector2(10374.7, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree15"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree15/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree15"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree15/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree15"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree15/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree15"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree15/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree15"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree15/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree16" type="Sprite2D" parent="ZTrees"]
+position = Vector2(8049.67, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree16"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree16/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree16"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree16/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree16"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree16/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree16"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree16/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree16"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree16/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="tree17" type="Sprite2D" parent="ZTrees"]
+position = Vector2(6423.67, 0)
+texture = ExtResource("20_vqdye")
+
+[node name="branch" type="StaticBody2D" parent="ZTrees/tree17"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree17/branch"]
+position = Vector2(-18, -7)
+rotation = 0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch2" type="StaticBody2D" parent="ZTrees/tree17"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree17/branch2"]
+position = Vector2(-19, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch3" type="StaticBody2D" parent="ZTrees/tree17"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree17/branch3"]
+position = Vector2(17, -7)
+rotation = -0.698132
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch4" type="StaticBody2D" parent="ZTrees/tree17"]
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree17/branch4"]
+position = Vector2(18, 52)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[node name="branch5" type="StaticBody2D" parent="ZTrees/tree17"]
+position = Vector2(-87.6667, -158.333)
+scale = Vector2(2.5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ZTrees/tree17/branch5"]
+position = Vector2(35, 53.3333)
+shape = SubResource("RectangleShape2D_fj5ss")
+one_way_collision = true
+
+[connection signal="timeout" from="UILayer/TextBG/fadeTimer" to="." method="_on_fade_timer_timeout"]
+[connection signal="timeout" from="Time" to="." method="_on_time_timeout"]
+[connection signal="body_entered" from="Win/physics" to="Win" method="_on_physics_body_entered"]
+[connection signal="timeout" from="Win/winTimer" to="." method="_on_win_timer_timeout"]
+[connection signal="body_entered" from="Interact2/physics" to="Interact2" method="_on_physics_body_entered"]
+[connection signal="body_entered" from="Interact3/physics" to="Interact3" method="_on_physics_body_entered"]
+[connection signal="body_entered" from="Interact4/physics" to="Interact4" method="_on_physics_body_entered"]
+[connection signal="body_entered" from="Interact5/physics" to="Interact5" method="_on_physics_body_entered"]
+[connection signal="body_entered" from="leftBoundInter/physics" to="leftBoundInter" method="_on_physics_body_entered"]
+[connection signal="body_entered" from="timeSpent/physics" to="timeSpent" method="_on_physics_body_entered"]
+[connection signal="body_entered" from="treeSee/physics" to="treeSee" method="_on_physics_body_entered"]
+[connection signal="body_entered" from="rightbound/physics" to="rightbound" method="_on_physics_body_entered"]
+[connection signal="body_entered" from="escape/physics" to="escape" method="_on_physics_body_entered"]
+[connection signal="body_entered" from="escape2/physics" to="escape2" method="_on_physics_body_entered"]
+[connection signal="body_entered" from="escape3/physics" to="escape3" method="_on_physics_body_entered"]
+[connection signal="finished" from="Music" to="." method="_on_audio_stream_player_finished"]

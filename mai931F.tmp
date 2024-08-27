@@ -1,0 +1,241 @@
+[gd_scene load_steps=22 format=3 uid="uid://dbn4nvkawnkci"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_6v164"]
+[ext_resource type="Script" path="res://main.gd" id="1_bvb1k"]
+[ext_resource type="Texture2D" uid="uid://bu01dtmqhjeai" path="res://assets/crowWalk0.png" id="1_oru8x"]
+[ext_resource type="Texture2D" uid="uid://dcf0xt5hyl3x1" path="res://assets/crowBalance.png" id="1_pj124"]
+[ext_resource type="Texture2D" uid="uid://5h8phrv3um4s" path="res://assets/crowDown2.png" id="2_0cgk5"]
+[ext_resource type="Texture2D" uid="uid://bqjgup5v1rxst" path="res://assets/crowWalk1.png" id="2_43hw6"]
+[ext_resource type="Texture2D" uid="uid://blg1wewiu8s7w" path="res://assets/crowWalk2.png" id="3_qjcv3"]
+[ext_resource type="Texture2D" uid="uid://5jldehn3gbm4" path="res://assets/crowDown.png" id="3_rssiv"]
+[ext_resource type="Texture2D" uid="uid://daugguu4tsxar" path="res://assets/crowUp2.png" id="4_3sqx3"]
+[ext_resource type="Texture2D" uid="uid://dyw5yutkn12t2" path="res://assets/crowUp.png" id="5_ptkx0"]
+[ext_resource type="Texture2D" uid="uid://dy70lk7v8rtwu" path="res://assets/crowIdleAir.png" id="6_2bka5"]
+[ext_resource type="Texture2D" uid="uid://cfna4byikjfjf" path="res://assets/crowIdleJump.png" id="7_ui8y1"]
+[ext_resource type="Texture2D" uid="uid://dlq3ntmd0hlmk" path="res://assets/crowIdleFlap.png" id="8_n7r1t"]
+[ext_resource type="Texture2D" uid="uid://ce2fggdn6ae2w" path="res://icon.svg" id="13_65jp6"]
+[ext_resource type="FontFile" uid="uid://c57ufbmm72ng5" path="res://assets/origa___.ttf" id="15_g7hky"]
+[ext_resource type="Script" path="res://Interact.gd" id="16_y1uib"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lxsw"]
+size = Vector2(30, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ds35c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pj124")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0cgk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rssiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0cgk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_pj124")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3sqx3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ptkx0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3sqx3")
+}],
+"loop": true,
+"name": &"fast",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2bka5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ui8y1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2bka5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_n7r1t")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oru8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_43hw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_oru8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qjcv3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y5two"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fj5ss"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bf74r"]
+size = Vector2(126.198, 125.364)
+
+[node name="Root" type="Node2D"]
+script = ExtResource("1_bvb1k")
+
+[node name="player" type="CharacterBody2D" parent="."]
+position = Vector2(100, -51)
+script = ExtResource("1_6v164")
+
+[node name="body" type="CollisionShape2D" parent="player"]
+position = Vector2(1, 2.5)
+shape = SubResource("RectangleShape2D_7lxsw")
+
+[node name="camera" type="Camera2D" parent="player"]
+
+[node name="sprite" type="AnimatedSprite2D" parent="player"]
+sprite_frames = SubResource("SpriteFrames_ds35c")
+animation = &"fly"
+frame_progress = 0.223523
+
+[node name="anims" type="AnimationPlayer" parent="player/sprite"]
+
+[node name="Placeholder" type="Sprite2D" parent="."]
+position = Vector2(28.5, 89)
+scale = Vector2(3.44531, 1)
+texture = ExtResource("13_65jp6")
+
+[node name="ground" type="StaticBody2D" parent="."]
+position = Vector2(28, -2)
+scale = Vector2(57.8581, 3.61395)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ground"]
+shape = SubResource("RectangleShape2D_fj5ss")
+
+[node name="ground2" type="StaticBody2D" parent="."]
+position = Vector2(170, -86)
+rotation = 1.5708
+scale = Vector2(5, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ground2"]
+shape = SubResource("RectangleShape2D_fj5ss")
+
+[node name="ground3" type="StaticBody2D" parent="."]
+position = Vector2(-94, -116)
+scale = Vector2(8.12, 1)
+physics_material_override = SubResource("PhysicsMaterial_y5two")
+
+[node name="body" type="CollisionShape2D" parent="ground3"]
+shape = SubResource("RectangleShape2D_fj5ss")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="ScreenTint" type="ColorRect" parent="UILayer" groups=["shader"]]
+offset_right = 576.0
+offset_bottom = 324.0
+color = Color(1, 0.796078, 0.380392, 0.117647)
+metadata/morning = Color(0.894118, 0.662745, 0, 0.176471)
+metadata/Night = Color(0.0588235, 0.101961, 0.176471, 0.768627)
+metadata/Noon = Color(1, 1, 1, 0)
+
+[node name="TimerLabel" type="RichTextLabel" parent="UILayer"]
+unique_name_in_owner = true
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 230.0
+offset_bottom = 34.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_constants/text_highlight_h_padding = 0
+theme_override_fonts/normal_font = ExtResource("15_g7hky")
+theme_override_font_sizes/normal_font_size = 20
+text = "23:59:59"
+
+[node name="TextBG" type="ColorRect" parent="UILayer" groups=["dialogue"]]
+offset_left = 85.0
+offset_top = 242.0
+offset_right = 499.0
+offset_bottom = 322.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="TextOutline" type="ColorRect" parent="UILayer/TextBG"]
+z_index = -1
+offset_left = -12.0
+offset_top = -2.0
+offset_right = 402.0
+offset_bottom = 78.0
+scale = Vector2(1.05, 1.05)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Dialogue" type="RichTextLabel" parent="UILayer/TextBG"]
+z_index = 5
+layout_mode = 0
+offset_left = 5.0
+offset_right = 409.0
+offset_bottom = 80.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("15_g7hky")
+theme_override_font_sizes/normal_font_size = 20
+text = "You have less than 24 hours to return to your nest. 
+Controls: WASD Space Shift"
+
+[node name="fadeTimer" type="Timer" parent="UILayer/TextBG"]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="Time" type="Timer" parent="."]
+wait_time = 0.035
+autostart = true
+
+[node name="Interact" type="Sprite2D" parent="." groups=["interact"]]
+position = Vector2(287, -49)
+scale = Vector2(0.221873, 0.159535)
+texture = ExtResource("13_65jp6")
+script = ExtResource("16_y1uib")
+metadata/words = "\"i am 1\""
+
+[node name="physics" type="Area2D" parent="Interact"]
+
+[node name="body" type="CollisionShape2D" parent="Interact/physics"]
+position = Vector2(-0.00012207, 0)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_bf74r")
+
+[node name="Interact2" type="Sprite2D" parent="." groups=["interact"]]
+position = Vector2(345.414, -52.723)
+scale = Vector2(0.13147, 0.0894226)
+texture = ExtResource("13_65jp6")
+script = ExtResource("16_y1uib")
+metadata/words = "i am 2"
+
+[node name="physics" type="Area2D" parent="Interact2"]
+
+[node name="body" type="CollisionShape2D" parent="Interact2/physics"]
+position = Vector2(-0.00012207, 0)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_bf74r")
+
+[connection signal="timeout" from="UILayer/TextBG/fadeTimer" to="." method="_on_fade_timer_timeout"]
+[connection signal="timeout" from="Time" to="." method="_on_time_timeout"]
+[connection signal="body_entered" from="Interact/physics" to="Interact" method="_on_physics_body_entered"]
+[connection signal="body_entered" from="Interact2/physics" to="Interact2" method="_on_physics_body_entered"]
